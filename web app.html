@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+    }
+    .todo-container {
+        width: 300px;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+    .todo-item {
+        text-align: left;
+        margin-bottom: 10px;
+    }
+    .todo-item input[type="checkbox"] {
+        margin-right: 10px;
+    }
+    .todo-item span {
+        display: inline-block;
+        width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .todo-item button {
+        background-color: #e0e0e0;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+    .todo-item button:hover {
+        background-color: #ccc;
+    }
+    input[type="text"] {
+        width: 200px;
+        padding: 8px;
+        box-sizing: border-box;
+        margin-right: 10px;
+    }
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+    button[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+
+<div class="todo-container">
+    <h2>To-Do List</h2>
+    <form id="todoForm">
+        <input type="text" id="todoInput" placeholder="Enter task...">
+        <button type="submit" onclick="addTodo()">Add</button>
+    </form>
+    <div id="todoList">
+        
+    </div>
+</div>
+
+<script>
+    
+    function addTodo() {
+        var todoInput = document.getElementById('todoInput');
+        var todoText = todoInput.value.trim();
+        
+        if (todoText === '') {
+            alert('Please enter a task.');
+            return;
+        }
+        
+        var todoList = document.getElementById('todoList');
+        
+       
+        var todoItem = document.createElement('div');
+        todoItem.className = 'todo-item';
+        
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        
+        var span = document.createElement('span');
+        span.textContent = todoText;
+        
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function() {
+            todoList.removeChild(todoItem);
+        };
+        
+        
+        todoItem.appendChild(checkbox);
+        todoItem.appendChild(span);
+        todoItem.appendChild(deleteButton);
+        
+        todoList.appendChild(todoItem);
+        
+        
+        todoInput.value = '';
+    }
+</script>
+
+</body>
+</html>
